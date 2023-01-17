@@ -9,10 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{87C529EC-85A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{288F4D70-0FB2-4261-A441-ECA9A9033DAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "enzotlucas.DevKit.Tests", "enzotlucas.DevKit.Tests\enzotlucas.DevKit.Tests.csproj", "{F6EFF0B0-2CC5-4F3F-A0BC-D3930C4764F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "enzotlucas.DevKit.Tests", "enzotlucas.DevKit.Tests\enzotlucas.DevKit.Tests.csproj", "{F6EFF0B0-2CC5-4F3F-A0BC-D3930C4764F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{FE6D8781-0607-4A34-9E69-750DE31E3D47}"
 	ProjectSection(SolutionItems) = preProject
+		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject

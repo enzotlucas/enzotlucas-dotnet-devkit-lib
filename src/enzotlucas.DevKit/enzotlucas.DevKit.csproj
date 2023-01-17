@@ -5,9 +5,20 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<VersionPrefix>0.7.0-beta</VersionPrefix>
+		<VersionPrefix>0.1.0-alpha</VersionPrefix>
+		<Authors>Enzo Thomazi Lucas</Authors>
+		<Company>enzotlucas</Company>
+		<Product>DevKit</Product>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
-	
+
+	<ItemGroup>
+		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="FluentValidation" Version="11.4.0" />
 		<PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
