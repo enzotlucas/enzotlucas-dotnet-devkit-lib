@@ -9,7 +9,7 @@ namespace enzotlucas.DevKit.ApiSpecification.Swagger
 {
     public static class SwaggerExtensions
     {
-        public static IServiceCollection AddSwaggerConfiguration(this IServiceCollection services)
+        public static IServiceCollection AddDevKitSwaggerConfiguration(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
             {

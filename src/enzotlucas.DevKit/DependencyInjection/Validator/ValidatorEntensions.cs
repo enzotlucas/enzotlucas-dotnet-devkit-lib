@@ -9,7 +9,7 @@ namespace enzotlucas.DevKit.DependencyInjection.Validator
 {
     public static class ValidatorEntensions
     {
-        public static IServiceCollection UseValidation(this IServiceCollection services)
+        public static IServiceCollection AddDevKitValidation(this IServiceCollection services)
         {
             services.AddFluentValidationAutoValidation();
 

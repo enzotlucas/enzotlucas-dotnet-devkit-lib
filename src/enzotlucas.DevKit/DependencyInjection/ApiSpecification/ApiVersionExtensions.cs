@@ -5,7 +5,7 @@ namespace enzotlucas.DevKit.ApiSpecification
 {
     public static class ApiVersionExtensions
     {
-        public static IServiceCollection AddApiVersioningConfiguration(this IServiceCollection services)
+        public static IServiceCollection AddDevKitApiVersioningConfiguration(this IServiceCollection services)
         {
             services.AddEndpointsApiExplorer();
 

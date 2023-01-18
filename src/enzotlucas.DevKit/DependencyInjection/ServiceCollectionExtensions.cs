@@ -6,21 +6,15 @@ using enzotlucas.DevKit.Core.Providers;
 using enzotlucas.DevKit.Logger.Loggers;
 using enzotlucas.DevKit.Logger.LoggerManagers;
 using enzotlucas.DevKit.DependencyInjection.Validator;
+using enzotlucas.DevKit.DependencyInjection.Logger;
 
 namespace enzotlucas.DevKit.DependencyInjection
 {
     /// <summary>
-    /// 
+    /// Class responsable for dependency injection of the library
     /// </summary>
     public static class ServiceCollectionExtensions
     {
-        private static readonly IReadOnlyDictionary<LoggerProvider, Type> _loggers =
-        new Dictionary<LoggerProvider, Type>
-        {
-            {LoggerProvider.Console, typeof(ConsoleLoggerManager) }
-        };
-
-
         /// <summary>
         /// This extension configures the following topics: 
         /// <list type="bullet">
@@ -36,12 +30,7 @@ namespace enzotlucas.DevKit.DependencyInjection
         {
             services.AddDevKit();
 
-            var logger = _loggers[loggerProvider];
-
-            if (logger is not null)
-            {
-                services.AddTransient(typeof(ILoggerManager), logger);
-            }
+            services.AddDevKitLoggingManagment(loggerProvider);
 
             return services;
         }
@@ -58,11 +47,11 @@ namespace enzotlucas.DevKit.DependencyInjection
         /// <returns>The service collection</returns>
         public static IServiceCollection AddDevKit(this IServiceCollection services)
         {
-            services.AddApiVersioningConfiguration();
+            services.AddDevKitApiVersioningConfiguration();
 
-            services.AddSwaggerConfiguration();
+            services.AddDevKitSwaggerConfiguration();
 
-            services.UseValidation();
+            services.AddDevKitValidation();
 
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
