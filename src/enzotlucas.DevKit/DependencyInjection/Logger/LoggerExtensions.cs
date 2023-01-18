@@ -6,14 +6,26 @@ using Microsoft.Extensions.Logging;
 
 namespace enzotlucas.DevKit.DependencyInjection.Logger
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class LoggerExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private static readonly IReadOnlyDictionary<LoggerProvider, Type> _loggers =
         new Dictionary<LoggerProvider, Type>
         {
             {LoggerProvider.Console, typeof(ConsoleLoggerManager) }
         };
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="loggerProvider"></param>
+        /// <returns></returns>
         public static IServiceCollection AddDevKitLoggingManagment(this IServiceCollection services, LoggerProvider loggerProvider)
         {
             var logger = _loggers[loggerProvider];

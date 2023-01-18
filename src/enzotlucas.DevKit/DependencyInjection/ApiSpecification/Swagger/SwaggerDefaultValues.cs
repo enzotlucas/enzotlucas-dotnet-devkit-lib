@@ -4,7 +4,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace enzotlucas.DevKit.ApiSpecification.Swagger
 {
-    public sealed class SwaggerDefaultValues : IOperationFilter
+    internal sealed class SwaggerDefaultValues : IOperationFilter
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {

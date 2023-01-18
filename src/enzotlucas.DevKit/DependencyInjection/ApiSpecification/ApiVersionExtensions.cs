@@ -3,8 +3,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace enzotlucas.DevKit.ApiSpecification
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ApiVersionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddDevKitApiVersioningConfiguration(this IServiceCollection services)
         {
             services.AddEndpointsApiExplorer();

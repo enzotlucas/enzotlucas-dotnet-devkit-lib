@@ -1,5 +1,8 @@
 ﻿namespace enzotlucas.DevKit.Core.Exceptions
 {
+    /// <summary>
+    /// Represents business logic errors that occur during application execution
+    /// </summary>
     public class BusinessException : Exception
     {
         public IDictionary<string, string[]> ValidationErrors { get; private set; }

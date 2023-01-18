@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using enzotlucas.DevKit.Extensions;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Reflection;
 
 namespace enzotlucas.DevKit.ApiSpecification.Swagger
 {
-    public sealed class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
+    internal sealed class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
     {
         private readonly IApiVersionDescriptionProvider _provider;
         private readonly IConfiguration _configuration;
@@ -25,8 +27,48 @@ namespace enzotlucas.DevKit.ApiSpecification.Swagger
                 options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description, _configuration));
         }
 
-        static OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description,
+        private static OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description,
                                                    IConfiguration configuration)
+        {
+            try
+            {
+                return TryCreateInfoForApiVersion(description, configuration);
+            }
+            catch (Exception)
+            {
+                ConsoleExtensions.PrintError("enzotlucas.DevKit.ApiSpecification.Swagger: Invalid swagger information on configuration file, read the oficial nuget documentation to use the library at full potential");
+
+                return CreateInfoWithUndefinedInformations(description);
+            }
+        }
+
+        private static OpenApiInfo TryCreateInfoForApiVersion(ApiVersionDescription description,
+                                                             IConfiguration configuration)
+        {
+            if (!configuration.GetSection("Swagger").Exists())
+            {
+                return CreateInfoWithUndefinedInformations(description);
+            }
+
+            return CreateInfoWithDefinedInformations(description, configuration);
+        }
+
+        private static OpenApiInfo CreateInfoWithUndefinedInformations(ApiVersionDescription description)
+        {
+            var info = new OpenApiInfo()
+            {
+                Title = Assembly.GetEntryAssembly().GetName().Name,
+                Version = description.ApiVersion.ToString()
+            };
+
+            if (description.IsDeprecated)
+                info.Description += " This version is deprecated!";
+
+            return info;
+        }
+
+        static OpenApiInfo CreateInfoWithDefinedInformations(ApiVersionDescription description,
+                                                             IConfiguration configuration)
         {
             var info = new OpenApiInfo()
             {

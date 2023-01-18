@@ -3,8 +3,6 @@ using enzotlucas.DevKit.Logger;
 using enzotlucas.DevKit.ApiSpecification.Swagger;
 using Microsoft.Extensions.DependencyInjection;
 using enzotlucas.DevKit.Core.Providers;
-using enzotlucas.DevKit.Logger.Loggers;
-using enzotlucas.DevKit.Logger.LoggerManagers;
 using enzotlucas.DevKit.DependencyInjection.Validator;
 using enzotlucas.DevKit.DependencyInjection.Logger;
 
@@ -51,7 +49,7 @@ namespace enzotlucas.DevKit.DependencyInjection
 
             services.AddDevKitSwaggerConfiguration();
 
-            services.AddDevKitValidation();
+            services.AddDevKitRequestValidation();
 
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 

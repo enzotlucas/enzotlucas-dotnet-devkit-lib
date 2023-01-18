@@ -7,9 +7,17 @@ using System.Globalization;
 
 namespace enzotlucas.DevKit.DependencyInjection.Validator
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ValidatorEntensions
     {
-        public static IServiceCollection AddDevKitValidation(this IServiceCollection services)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddDevKitRequestValidation(this IServiceCollection services)
         {
             services.AddFluentValidationAutoValidation();
 

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace enzotlucas.DevKit.Middlewares
 {
     /// <summary>
-    /// Middleware responsable for validating if the request have a correlation id, if don't, it creates a new one
+    /// Middleware responsable for validating if the request have a correlation id, if don't, it creates a new one.
     /// </summary>
     public sealed class CorrelationIdMiddleware
     {

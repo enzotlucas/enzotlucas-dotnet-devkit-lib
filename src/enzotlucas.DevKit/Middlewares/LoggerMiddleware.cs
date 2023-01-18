@@ -9,7 +9,7 @@ using System.Security.Claims;
 namespace enzotlucas.DevKit.Middlewares
 {
     /// <summary>
-    /// Middleware responsable for save a log of every request
+    /// Middleware responsable for save a log of every request.
     /// </summary>
     public sealed class LoggerMiddleware
     {

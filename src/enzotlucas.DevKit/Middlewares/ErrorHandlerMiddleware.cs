@@ -11,7 +11,7 @@ using System.Net;
 namespace enzotlucas.DevKit.Middlewares
 {
     /// <summary>
-    /// Middleware responsable for handle exceptions of the application
+    /// Middleware responsable for handle exceptions of the application.
     /// </summary>
     public sealed class ErrorHandlerMiddleware
     {

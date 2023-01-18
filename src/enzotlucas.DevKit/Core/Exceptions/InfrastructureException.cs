@@ -1,5 +1,8 @@
 ﻿namespace enzotlucas.DevKit.Core.Exceptions
 {
+    /// <summary>
+    /// Represents predictable infrastructure errors that occur during application execution
+    /// </summary>
     public class InfrastructureException : Exception
     {
         public Guid CorrelationId { get; private set; }
