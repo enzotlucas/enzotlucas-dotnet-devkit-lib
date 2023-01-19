@@ -5,6 +5,11 @@ The library that helps you not to repeat code or worry about standard things
 ## Topics
 - [First steps](#first-steps)
 - [Api versioning](#api-versioning)
+    - Mandatory step
+        - With route version defined 
+        - Without route version defined 
+    - Description
+    - Single use
 - [Api documentation](#api-documentation)
     - Mandatory step
     - Description
@@ -60,7 +65,7 @@ To use this feature of the library at full potential, you have to mark you contr
 ```
 Examples:
 
-With route version defined
+- With route version defined
 ```csharp
 [Route("api/v{version:apiVersion}/restaurants")]
 public class RestaurantsController : ControllerBase
@@ -76,7 +81,8 @@ The version controll is made using this dropdown:
 
 <img src="https://github.com/enzotlucas/enzotlucas-dotnet-devkit-lib/blob/main/imgs/version-control.png?raw=true" alt="api-with-version">    
 
-Without route version defined
+- Without route version defined
+
 ```csharp
 [Route("api/restaurants")] 
 public class RestaurantsController : ControllerBase
