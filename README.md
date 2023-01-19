@@ -42,18 +42,54 @@ public static WebApplication ConfigureApp(this WebApplication app)
     //Some code...
 }
 ```
-Bellow you can read everything you need to know to use the library, the only mandatory thing you have to use in your project is the [Api documentation mandatory step](#mandatory-step)
+Bellow you can read everything you need to know about the library to use it, to use the library at full potential, is important to read about the **Mandatory steps**
 
 --------------------------
 
-## Api versioning
+## **Api versioning**
+
+### Mandatory step
+To use this feature of the library at full potential, you have to mark you controller with this attributes:
+```csharp
+[ApiController]
+[Produces("application/json")]
+[ApiVersion("1.0")] // This attribute defines the api version, the default of the library is one
+[Route("api/v{version:apiVersion}/routes")]   // this type of route with the "v{version:apiVersion}" parameter makes the version
+                                              // part of the route, so you don't need to pass as a parameter
+
+```
+Examples:
+
+```csharp
+[Route("api/v{version:apiVersion}/restaurants")]
+{
+    //Some code...
+}
+```
+<img src="https://github.com/enzotlucas/enzotlucas-dotnet-devkit-lib/blob/main/imgs/api-with-version.png?raw=true" alt="api-with-version">    
+
+```csharp
+[Route("api/restaurants")] 
+public class RestaurantsController : ControllerBase
+{
+    //Some code...
+}
+```
+<img src="https://github.com/enzotlucas/enzotlucas-dotnet-devkit-lib/blob/main/imgs/api-without-version.png?raw=true" alt="api-without-version">    
+
+### Description
+```bash
+# under development
+```
+
+### Single use
 ```bash
 # under development
 ```
 
 --------------------------
 
-## Api documentation
+## **Api documentation**
 
 ### Mandatory step
 Before start, you have to add this line to your API project csproj configuration, to use this feature:
@@ -108,14 +144,19 @@ public static WebApplication ConfigureApp(this WebApplication app)
 
 --------------------------
 
-## Request validation
+## **Request validation**
 ```bash
 # under development
 ```
 
 --------------------------
 
-## Logging
+## **Logging**
+```bash
+# under development
+```
+
+## **Middlewares**
 ```bash
 # under development
 ```
