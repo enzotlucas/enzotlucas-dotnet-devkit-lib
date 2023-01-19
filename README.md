@@ -6,12 +6,14 @@ The library that helps you not to repeat code or worry about standard things
 - [First steps](#first-steps)
 - [Api versioning](#api-versioning)
 - [Api documentation](#api-documentation)
-    - [Mandatory step](#api-documentation-mandatory-step)
-    - [Description](#api-documentation-description)
-    - [How to use](#api-documentation-how-to-use)
+    - Mandatory step
+    - Description
+    - Single use
 - [Request validation](#request-validation)
 - [Logging](#logging)
 - [Middlewares](#middlewares)
+
+----------------------------------------------------
 
 ## First steps
 
@@ -42,14 +44,16 @@ public static WebApplication ConfigureApp(this WebApplication app)
 ```
 Bellow you can read everything you need to know to use the library, the only mandatory thing you have to use in your project is the [Api documentation mandatory step](#mandatory-step)
 
+--------------------------
+
 ## Api versioning
 ```bash
 # under development
 ```
 
-## Api documentation
+--------------------------
 
-<div id="api-documentation-mandatory-step">
+## Api documentation
 
 ### Mandatory step
 Before start, you have to add this line to your API project csproj configuration, to use this feature:
@@ -59,8 +63,6 @@ Before start, you have to add this line to your API project csproj configuration
 	<GenerateDocumentationFile>True</GenerateDocumentationFile>
 </PropertyGroup>
 ```
-</div>
-<div id="api-documentation-description">
 
 ### Description
 
@@ -84,12 +86,9 @@ public async Task<IActionResult> Get(int page, int rows, CancellationToken cance
 }
 ```
 The messages are displayed like this:
-<img src=".\imgs\swagger.png" alt="swagger">    
-</div>
+<img src="https://github.com/enzotlucas/enzotlucas-dotnet-devkit-lib/blob/main/imgs/swagger.png?raw=true" alt="swagger">    
 
-<div id="api-documentation-how-to-use">
-
-### How to use
+### Single use
 To use only this feature, you can use the method:
 ```csharp
 public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
@@ -98,13 +97,23 @@ public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder
 
     //Some code...
 }
+
+public static WebApplication ConfigureApp(this WebApplication app)
+{
+    app.UseDevKitSwaggerConfiguration();
+
+    //Some code...
+}
 ```
-</div>
+
+--------------------------
 
 ## Request validation
 ```bash
 # under development
 ```
+
+--------------------------
 
 ## Logging
 ```bash

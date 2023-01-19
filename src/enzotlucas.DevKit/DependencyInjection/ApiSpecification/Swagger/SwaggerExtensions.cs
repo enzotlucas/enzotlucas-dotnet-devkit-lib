@@ -9,15 +9,15 @@ using System.Reflection;
 namespace enzotlucas.DevKit.ApiSpecification.Swagger
 {
     /// <summary>
-    /// 
+    /// Class responsable for dependency injection of the API documentation.
     /// </summary>
     public static class SwaggerExtensions
     {
         /// <summary>
-        /// 
+        /// Adds the API documentation configuration.
         /// </summary>
-        /// <param name="services"></param>
-        /// <returns></returns>
+        /// <param name="services">Specifies the contract for a collection of service descriptors.</param>
+        /// <returns>The <see cref="IServiceCollection"/> instance.</returns>
         public static IServiceCollection AddDevKitSwaggerConfiguration(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
@@ -60,9 +60,14 @@ namespace enzotlucas.DevKit.ApiSpecification.Swagger
             return currentClass.Name.Replace("ViewModel", string.Empty);
         }
 
-        public static WebApplication UseSwaggerConfiguration(this WebApplication app)
+        /// <summary>
+        /// Apply API documentation
+        /// </summary>
+        /// <param name="app">The web application used to configure the HTTP pipeline and routes.</param>
+        /// <returns>The <see cref="IApplicationBuilder"/> instance.</returns>
+        public static IApplicationBuilder UseDevKitSwaggerConfiguration(this IApplicationBuilder app)
         {
-            var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+            var provider = app.ApplicationServices.GetRequiredService<IApiVersionDescriptionProvider>();
 
             app.UseSwagger();
 

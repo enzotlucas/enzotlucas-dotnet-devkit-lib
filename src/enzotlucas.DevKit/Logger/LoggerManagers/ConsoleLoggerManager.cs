@@ -1,4 +1,5 @@
-﻿using enzotlucas.DevKit.Extensions;
+﻿using enzotlucas.DevKit.Core.Events;
+using enzotlucas.DevKit.Extensions;
 using enzotlucas.DevKit.Logger.LoggerManagers;
 using Microsoft.Extensions.Logging;
 
@@ -9,6 +10,27 @@ namespace enzotlucas.DevKit.Logger.Loggers
     /// </summary>
     public sealed class ConsoleLoggerManager : ILoggerManager
     {
+        public void Log(LogLevel logLevel, string message, Guid? correlationId = null, object body = null)
+        {
+            var log = new Log(logLevel, message, correlationId, body);
+
+            Log(log);
+        }
+
+        public void Log(LogLevel logLevel, string message, Exception ex, Guid? correlationId = null, object body = null)
+        {
+            var log = new Log(logLevel, message, ex, correlationId, body);
+
+            Log(log);
+        }
+
+        public void Log(LogLevel logLevel, Exception ex, Guid? correlationId = null, object body = null)
+        {
+            var log = new Log(logLevel, ex, correlationId, body);
+
+            Log(log);
+        }
+
         public void Log(Log log)
         {
             switch (log.LogLevel)

@@ -7,11 +7,11 @@ namespace enzotlucas.DevKit.DependencyInjection
     public static class WebApplicationExtensions
     {
         /// <summary>
-        /// Adds correlationId middleware, error handler middleware and logging middleware to the <paramref name="app"/>
+        /// Apply API documentation, adds correlationId middleware, error handler middleware and logging middleware to the <paramref name="app"/>.
         /// </summary>
-        /// <param name="app"></param>
-        /// <returns>The web application</returns>
-        public static WebApplication UseDevKit(this WebApplication app)
+        /// <param name="app">The web application used to configure the HTTP pipeline and routes.</param>
+        /// <returns>The <see cref="IApplicationBuilder"/> instance.</returns>
+        public static IApplicationBuilder UseDevKit(this IApplicationBuilder app)
         {
             app.UseMiddleware<CorrelationIdMiddleware>();
 
@@ -19,7 +19,7 @@ namespace enzotlucas.DevKit.DependencyInjection
 
             app.UseMiddleware<LoggerMiddleware>();
 
-            app.UseSwaggerConfiguration();
+            app.UseDevKitSwaggerConfiguration();
 
             return app;
         }

@@ -9,24 +9,25 @@ using enzotlucas.DevKit.DependencyInjection.Logger;
 namespace enzotlucas.DevKit.DependencyInjection
 {
     /// <summary>
-    /// Class responsable for dependency injection of the library
+    /// Class responsable for dependency injection of the library.
     /// </summary>
     public static class ServiceCollectionExtensions
     {
         /// <summary>
         /// This extension configures the following topics: 
         /// <list type="bullet">
-        /// <item>API versioning</item>
-        /// <item>API documentation</item>
-        /// <item>Request validation</item>
-        /// <item>Logging</item>
+        /// <item>API versioning;</item>
+        /// <item>API documentation;</item>
+        /// <item>Request validation;</item>
+        /// <item>Logging.</item>
         /// </list>
         /// </summary>
-        /// <param name="services"></param>
-        /// <returns>The service collection</returns>
+        /// <param name="services">Specifies the contract for a collection of service descriptors.</param>
+        /// <param name="loggerProvider">Specifies the logging provider.</param>
+        /// <returns>The <see cref="IServiceCollection"/> instance.</returns>
         public static IServiceCollection AddDevKit(this IServiceCollection services, LoggerProvider loggerProvider)
         {
-            services.AddDevKit();
+            services.AddDefaultServices();
 
             services.AddDevKitLoggingManagment(loggerProvider);
 
@@ -36,14 +37,23 @@ namespace enzotlucas.DevKit.DependencyInjection
         /// <summary>
         /// This extension configures the following topics: 
         /// <list type="bullet">
-        /// <item>API versioning</item>
-        /// <item>API documentation</item>
-        /// <item>Request validation</item>
+        /// <item>API versioning;</item>
+        /// <item>API documentation;</item>
+        /// <item>Request validation.</item>
         /// </list>
         /// </summary>
-        /// <param name="services"></param>
-        /// <returns>The service collection</returns>
+        /// <param name="services">Specifies the contract for a collection of service descriptors.</param>
+        /// <returns>The <see cref="IServiceCollection"/> instance.</returns>
         public static IServiceCollection AddDevKit(this IServiceCollection services)
+        {
+            services.AddDefaultServices();
+
+            services.AddDevKitLoggingManagment(LoggerProvider.Console);
+
+            return services;
+        }
+
+        private static IServiceCollection AddDefaultServices(this IServiceCollection services)
         {
             services.AddDevKitApiVersioningConfiguration();
 
