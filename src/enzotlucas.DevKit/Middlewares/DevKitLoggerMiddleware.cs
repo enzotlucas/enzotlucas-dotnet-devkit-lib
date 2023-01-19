@@ -11,13 +11,13 @@ namespace enzotlucas.DevKit.Middlewares
     /// <summary>
     /// Middleware responsable for save a log of every request.
     /// </summary>
-    public sealed class LoggerMiddleware
+    public sealed class DevKitLoggerMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILoggerManager _logger;
         private Guid _correlationId;
 
-        public LoggerMiddleware(RequestDelegate next,
+        public DevKitLoggerMiddleware(RequestDelegate next,
                                 ILoggerManager logger,
                                 IDateTimeProvider dateTime)
         {

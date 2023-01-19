@@ -9,12 +9,12 @@ namespace enzotlucas.DevKit.Middlewares
     /// <summary>
     /// Middleware responsable for validating if the request have a correlation id, if don't, it creates a new one.
     /// </summary>
-    public sealed class CorrelationIdMiddleware
+    public sealed class DevKitCorrelationIdMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILoggerManager _logger;
 
-        public CorrelationIdMiddleware(RequestDelegate next,
+        public DevKitCorrelationIdMiddleware(RequestDelegate next,
                                        ILoggerManager logger)
         {
             _next = next;

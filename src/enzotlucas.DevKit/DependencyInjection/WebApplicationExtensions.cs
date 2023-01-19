@@ -13,11 +13,11 @@ namespace enzotlucas.DevKit.DependencyInjection
         /// <returns>The <see cref="IApplicationBuilder"/> instance.</returns>
         public static IApplicationBuilder UseDevKit(this IApplicationBuilder app)
         {
-            app.UseMiddleware<CorrelationIdMiddleware>();
+            app.UseMiddleware<DevKitCorrelationIdMiddleware>();
 
-            app.UseMiddleware<ErrorHandlerMiddleware>();
+            app.UseMiddleware<DevKitErrorHandlerMiddleware>();
 
-            app.UseMiddleware<LoggerMiddleware>();
+            app.UseMiddleware<DevKitLoggerMiddleware>();
 
             app.UseDevKitSwaggerConfiguration();
 

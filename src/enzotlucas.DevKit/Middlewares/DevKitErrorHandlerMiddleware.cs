@@ -13,13 +13,13 @@ namespace enzotlucas.DevKit.Middlewares
     /// <summary>
     /// Middleware responsable for handle exceptions of the application.
     /// </summary>
-    public sealed class ErrorHandlerMiddleware
+    public sealed class DevKitErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILoggerManager _logger;
         private Guid _correlationId;
 
-        public ErrorHandlerMiddleware(RequestDelegate next,
+        public DevKitErrorHandlerMiddleware(RequestDelegate next,
                                       ILoggerManager logger)
         {
             _next = next;
