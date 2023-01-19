@@ -5,7 +5,7 @@ using MediatR;
 
 namespace enzotlucas.DevKit.Core.Validators
 {
-    public sealed class UseCasesValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    internal sealed class UseCasesValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IUseCase<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;

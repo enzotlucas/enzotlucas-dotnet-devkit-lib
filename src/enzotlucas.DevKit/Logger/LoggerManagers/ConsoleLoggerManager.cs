@@ -38,22 +38,22 @@ namespace enzotlucas.DevKit.Logger.Loggers
                 case LogLevel.Trace:
                 case LogLevel.Debug:
                 case LogLevel.Information:
-                    PrintInformation(log);
+                    LogInformation(log);
                     break;
                 case LogLevel.None:
                     break;
                 default:
-                    PrintError(log);
+                    LogError(log);
                     break;
             }
         }
 
-        private static void PrintError(Log log)
+        private static void LogError(Log log)
         {
             ConsoleExtensions.Print(log, log.LogLevel == LogLevel.Warning ? ConsoleColor.Yellow : ConsoleColor.Red);
         }
 
-        private static void PrintInformation(Log log)
+        private static void LogInformation(Log log)
         {
             ConsoleExtensions.Print(log, ConsoleColor.White);
         }

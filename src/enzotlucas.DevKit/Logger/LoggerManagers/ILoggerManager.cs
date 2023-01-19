@@ -8,37 +8,37 @@ namespace enzotlucas.DevKit.Logger.LoggerManagers
     public interface ILoggerManager : IDisposable
     {
         /// <summary>
-        /// 
+        /// Saves the log
         /// </summary>
-        /// <param name="logLevel"></param>
-        /// <param name="message"></param>
-        /// <param name="correlationId"></param>
-        /// <param name="body"></param>
+        /// <param name="logLevel">Log severity level.</param>
+        /// <param name="message">Specified log message.</param>
+        /// <param name="correlationId">The request correlation id.</param>
+        /// <param name="body">Custom log object.</param>
         public void Log(LogLevel logLevel,
                         string message,
                         Guid? correlationId = null,
                         object body = null);
 
         /// <summary>
-        /// 
+        /// Saves the log
         /// </summary>
-        /// <param name="logLevel"></param>
-        /// <param name="ex"></param>
-        /// <param name="correlationId"></param>
-        /// <param name="body"></param>
+        /// <param name="logLevel">Log severity level.</param>
+        /// <param name="ex">Custom log error.</param>
+        /// <param name="correlationId">The request correlation id.</param>
+        /// <param name="body">Custom log object.</param>
         public void Log(LogLevel logLevel,
                         Exception ex,
                         Guid? correlationId = null,
                         object body = null);
 
         /// <summary>
-        /// 
+        /// Saves the log
         /// </summary>
-        /// <param name="logLevel"></param>
-        /// <param name="message"></param>
-        /// <param name="ex"></param>
-        /// <param name="correlationId"></param>
-        /// <param name="body"></param>
+        /// <param name="logLevel">Log severity level.</param>
+        /// <param name="message">Specified log message.</param>
+        /// <param name="ex">Custom log error.</param>
+        /// <param name="correlationId">The request correlation id.</param>
+        /// <param name="body">Custom log object.</param>
         public void Log(LogLevel logLevel,
                         string message,
                         Exception ex,

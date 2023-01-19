@@ -8,7 +8,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="NotFoundException"/> class with a specified error message.
         /// </summary>
-        /// <param name="message">Error custom message</param>
+        /// <param name="message">Error custom message.</param>
         /// <returns><see cref="NotFoundException"/></returns>
         public NotFoundException(string message = "Not found") : base(message)
         {

@@ -1,6 +1,6 @@
 ﻿namespace enzotlucas.DevKit.Core.Providers
 {
-    public sealed class DateTimeProvider : IDateTimeProvider
+    internal sealed class DateTimeProvider : IDateTimeProvider
     {
         public DateTime Now => DateTime.Now;
 
