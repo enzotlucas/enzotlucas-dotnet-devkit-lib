@@ -48,7 +48,7 @@ namespace enzotlucas.DevKit.ApiSpecification.Swagger
 
         private static void TryIncludeCommentsToApiDocumentation(this SwaggerGenOptions options)
         {
-            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlFile = $"{Assembly.GetEntryAssembly().GetName().Name}.xml";
 
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
