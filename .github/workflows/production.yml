@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Production / Deploy to nuget.org
+    name: Build, run tests and deploy to Nuget
     strategy:
       matrix:
         dotnet-version: [ '6.0.x' ]

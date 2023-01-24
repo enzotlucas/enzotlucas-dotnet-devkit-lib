@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Feature / Open PR to Develop
+    name: Build and run tests of feature
     strategy:
       matrix:
         dotnet-version: [ '6.0.x' ]
@@ -36,16 +36,16 @@ jobs:
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
-        
+
   pull-request:
     name: Open PR to develop
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      name: checkout
+      name: Setup Github Actions
 
     - uses: repo-sync/pull-request@v2
-      name: pull-request
+      name: Open PR to develop
       with:
         destination_branch: "develop"
         pr_title: "Pulling ${{ github.ref }} into develop"
