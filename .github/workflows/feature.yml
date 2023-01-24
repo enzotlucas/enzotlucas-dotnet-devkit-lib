@@ -1,0 +1,56 @@
+name: Feature / Open PR to Develop
+
+on:
+  push:
+    branches:
+      - feature*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and run tests of feature
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+    steps:
+
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Install dependencies
+        working-directory: ./src
+        run: dotnet restore
+
+      - name: Build application
+        working-directory: ./src
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run Tests
+        working-directory: ./src
+        run: dotnet test --no-restore --verbosity normal
+
+  pull-request:
+    name: Open PR to develop
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      name: Setup Github Actions
+
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+
+    - uses: repo-sync/pull-request@v2
+      name: Open PR to develop
+      with:
+        destination_branch: "develop"
+        pr_title: "Pulling ${{ steps.extract_branch.outputs.branch }} into develop"
+        pr_body: "[FTR] Automated PR from ${{ steps.extract_branch.outputs.branch }} to develop"
+        pr_reviewer: "enzotlucas"
+        pr_assignee: "enzotlucas"
+        pr_draft: false
+        github_token: ${{ secrets.GITHUB_TOKEN }}
