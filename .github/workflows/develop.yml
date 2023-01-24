@@ -47,9 +47,9 @@ jobs:
       name: Open PR to main
       with:
         destination_branch: "main"
-        pr_title: "Pulling ${{ github.ref }} into main"
-        pr_body: "[FTR] Automated PR from develop to main"
+        pr_title: "Pulling ${{ steps.extract_branch.outputs.branch }} into main"
+        pr_body: "[FTR] Automated PR from ${{ steps.extract_branch.outputs.branch }} to main"
         pr_reviewer: "enzotlucas"
         pr_assignee: "enzotlucas"
-        pr_draft: true
+        pr_draft: false
         github_token: ${{ secrets.GITHUB_TOKEN }}
