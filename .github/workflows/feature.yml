@@ -40,7 +40,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-            token: ${{ secrets.GITHUB_TOKEN }}
+            token: ${{ secrets.ACTION_REPOSITORY_KEY }}
             commit-message: Merge feature with develop
             title: Merge feature with develop
             body: Merge feature with maidevelopn
