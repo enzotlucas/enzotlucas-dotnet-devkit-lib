@@ -1,0 +1,46 @@
+name: Develop / Open PR to Production
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    types: [closed]
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Update NuGet package
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+    steps:
+
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Install dependencies
+        working-directory: ./src
+        run: dotnet restore
+
+      - name: Build application
+        working-directory: ./src
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run Tests
+        working-directory: ./src
+        run: dotnet test --no-restore --verbosity normal
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+            commit-message: Merge develop with main
+            base: main
+            labels: automated-pr
+            branch: develop
+            delete-branch: false

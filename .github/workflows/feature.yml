@@ -1,0 +1,47 @@
+name: Feature / Open PR to Develop
+
+on:
+  push:
+    branches:
+      - feature*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Update NuGet package
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+    steps:
+
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Install dependencies
+        working-directory: ./src
+        run: dotnet restore
+
+      - name: Build application
+        working-directory: ./src
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run Tests
+        working-directory: ./src
+        run: dotnet test --no-restore --verbosity normal
+      
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+            commit-message: Merge feature with develop
+            base: develop
+            labels: automated-pr
+            branch: ${{ steps.extract_branch.outputs.branch }}
+            delete-branch: false
