@@ -39,6 +39,7 @@ jobs:
   pull-request:
     name: Open PR to main
     runs-on: ubuntu-latest
+    needs: build
     steps:
     - uses: actions/checkout@v2
       name: Setup Github Actions
@@ -47,8 +48,8 @@ jobs:
       name: Open PR to main
       with:
         destination_branch: "main"
-        pr_title: "Pulling ${{ steps.extract_branch.outputs.branch }} into main"
-        pr_body: "[FTR] Automated PR from ${{ steps.extract_branch.outputs.branch }} to main"
+        pr_title: "Pulling develop into main"
+        pr_body: "[FTR] Automated PR from develop to main"
         pr_reviewer: "enzotlucas"
         pr_assignee: "enzotlucas"
         pr_draft: false
