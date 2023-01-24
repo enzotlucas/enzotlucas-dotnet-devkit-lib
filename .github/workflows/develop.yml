@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Update NuGet package
+    name: Feature / Open PR to Production
     strategy:
       matrix:
         dotnet-version: [ '6.0.x' ]
@@ -36,14 +36,20 @@ jobs:
         working-directory: ./src
         run: dotnet test --no-restore --verbosity normal
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
-        with:
-            token: ${{ secrets.ACTION_REPOSITORY_KEY }}
-            commit-message: Merge develop with main
-            title: Merge develop with main
-            body: Merge develop with main
-            base: main
-            labels: automated-pr
-            branch: develop
-            delete-branch: false
+  pull-request:
+    name: Open PR to main
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      name: checkout
+
+    - uses: repo-sync/pull-request@v2
+      name: pull-request
+      with:
+        destination_branch: "main"
+        pr_title: "Pulling ${{ github.ref }} into main"
+        pr_body: "[FTR] Automated PR from develop to main"
+        pr_reviewer: "enzotlucas"
+        pr_assignee: "enzotlucas"
+        pr_draft: true
+        github_token: ${{ secrets.GITHUB_TOKEN }}
