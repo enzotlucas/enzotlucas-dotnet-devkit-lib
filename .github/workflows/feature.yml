@@ -41,6 +41,8 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
             commit-message: Merge feature with develop
+            title: Merge feature with develop
+            body: Merge feature with maidevelopn
             base: develop
             labels: automated-pr
             branch: ${{ steps.extract_branch.outputs.branch }}

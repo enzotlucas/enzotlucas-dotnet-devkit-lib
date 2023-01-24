@@ -40,6 +40,8 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
             commit-message: Merge develop with main
+            title: Merge develop with main
+            body: Merge develop with main
             base: main
             labels: automated-pr
             branch: develop
