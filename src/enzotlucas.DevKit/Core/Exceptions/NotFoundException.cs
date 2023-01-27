@@ -45,7 +45,7 @@ namespace enzotlucas.DevKit.Core.Exceptions
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="SerializationException"></exception>
         /// <returns><see cref="NotFoundException"/></returns>
-        protected NotFoundException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+        private NotFoundException(SerializationInfo serializationInfo, StreamingContext streamingContext)
             :base(serializationInfo, streamingContext)
         { }
     }
