@@ -5,7 +5,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<VersionPrefix>6.0.1-rc</VersionPrefix>
+		<VersionPrefix>6.0.2-rc</VersionPrefix>
 		<Authors>Enzo Thomazi Lucas</Authors>
 		<Company>enzotlucas</Company>
 		<Product>DevKit</Product>
