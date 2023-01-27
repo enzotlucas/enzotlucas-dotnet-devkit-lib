@@ -3,6 +3,7 @@
     /// <summary>
     /// Represents business logic errors of objects not found that occur during application execution.
     /// </summary>
+    [Serializable]
     public sealed class NotFoundException : BusinessException
     {
         /// <summary>

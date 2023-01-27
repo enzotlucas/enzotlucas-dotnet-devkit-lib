@@ -17,7 +17,6 @@ namespace enzotlucas.DevKit.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILoggerManager _logger;
-        private Guid _correlationId;
 
         public DevKitErrorHandlerMiddleware(RequestDelegate next,
                                       ILoggerManager logger)
@@ -28,41 +27,35 @@ namespace enzotlucas.DevKit.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
+            var correlationId = context.Request.GetCorrelationId();
+
             try
             {
                 await _next(context);
             }
             catch (NotFoundException ex)
             {
-                _correlationId = context.Request.GetCorrelationId();
-
-                _logger.Log(new Log(LogLevel.Warning, ex, _correlationId));
+                _logger.Log(new Log(LogLevel.Warning, ex, correlationId));
 
                 await HandleExceptionAsync(context, ex);
             }
             catch (BusinessException ex)
             {
-                _correlationId = context.Request.GetCorrelationId();
-
-                _logger.Log(new Log(LogLevel.Warning, ex, _correlationId));
+                _logger.Log(new Log(LogLevel.Warning, ex, correlationId));
 
                 await HandleExceptionAsync(context, ex);
             }
             catch (InfrastructureException ex)
             {
-                _correlationId = context.Request.GetCorrelationId();
+                _logger.Log(new Log(LogLevel.Error, ex, correlationId));
 
-                _logger.Log(new Log(LogLevel.Error, ex, _correlationId));
-
-                await HandleExceptionAsync(context, ex, _correlationId);
+                await HandleExceptionAsync(context, ex, correlationId);
             }
             catch (Exception ex)
             {
-                _correlationId = context.Request.GetCorrelationId();
+                _logger.Log(new Log(LogLevel.Critical, "Something unexpected happened.", ex, correlationId));
 
-                _logger.Log(new Log(LogLevel.Critical, "Something unexpected happened.", ex, _correlationId));
-
-                await HandleExceptionAsync(context, ex, _correlationId);
+                await HandleExceptionAsync(context, ex, correlationId);
             }
         }
 

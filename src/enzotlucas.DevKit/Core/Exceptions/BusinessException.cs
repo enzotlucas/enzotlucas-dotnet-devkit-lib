@@ -3,6 +3,7 @@
     /// <summary>
     /// Represents business logic errors that occur during application execution.
     /// </summary>
+    [Serializable]
     public class BusinessException : Exception
     {
         /// <summary>

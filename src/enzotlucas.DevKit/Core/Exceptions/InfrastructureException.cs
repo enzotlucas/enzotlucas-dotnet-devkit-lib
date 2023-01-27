@@ -3,6 +3,7 @@
     /// <summary>
     /// Represents predictable infrastructure errors that occur during application execution
     /// </summary>
+    [Serializable]
     public class InfrastructureException : Exception
     {
         /// <summary>
