@@ -23,6 +23,21 @@
         public Guid CorrelationId { get; private set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="BusinessException"/> class.
+        /// </summary>
+        /// <returns><see cref="BusinessException"/></returns>
+        public BusinessException() : base() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BusinessException"/> class with a specified error message and a reference to 
+        /// the inner exception that is the cause of this exception.
+        /// </summary>
+        /// <param name="message">Error custom message.</param>
+        /// <param name="innerException">The reference of the cause of this exception.</param>
+        /// <returns><see cref="BusinessException"/></returns>
+        public BusinessException(string message, Exception? innerException) : base(message, innerException) { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BusinessException"/> class with a specified error message.
         /// </summary>
         /// <param name="message">Error custom message.</param>
