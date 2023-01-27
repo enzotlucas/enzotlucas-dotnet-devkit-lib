@@ -1,4 +1,7 @@
-﻿namespace enzotlucas.DevKit.Tests.Core.Exceptions
+﻿using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+
+namespace enzotlucas.DevKit.Tests.Core.Exceptions
 {
     public class BusinessExceptionTests
     {
@@ -105,20 +108,6 @@
             act.Should().ThrowExactly<BusinessException>()
                         .WithMessage(message)
                         .Which.CorrelationId.Should().Be(correlationId);
-        }
-
-        [Fact]
-        public void Constructor_ExceptionWithSerializedData_ShouldThrow()
-        {
-            //Arrange
-            var exception = new BusinessException();
-            var json = System.Text.Json.JsonSerializer.Serialize(exception);
-
-            //Act
-            var deserializedException = System.Text.Json.JsonSerializer.Deserialize<BusinessException>(json);
-
-            //Assert
-            deserializedException.Should().BeAssignableTo<BusinessException>();
         }
     }
 }

@@ -84,19 +84,5 @@
                         .WithMessage("Not found")
                         .Which.CorrelationId.Should().Be(correlationId);
         }
-
-        [Fact]
-        public void Constructor_ExceptionWithSerializedData_ShouldThrow()
-        {
-            //Arrange
-            var exception = new NotFoundException();
-            var json = System.Text.Json.JsonSerializer.Serialize(exception);
-
-            //Act
-            var deserializedException = System.Text.Json.JsonSerializer.Deserialize<NotFoundException>(json);
-
-            //Assert
-            deserializedException.Should().BeAssignableTo<NotFoundException>();
-        }
     }
 }

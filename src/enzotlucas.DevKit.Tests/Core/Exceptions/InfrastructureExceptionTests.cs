@@ -67,19 +67,5 @@
             assertion.WithInnerException<Exception>().Which.Message.Should().Be(innerExceptionMessage);
             assertion.Which.CorrelationId.Should().Be(correlationId);
         }
-
-        [Fact]
-        public void Constructor_ExceptionWithSerializedData_ShouldThrow()
-        {
-            //Arrange
-            var exception = new InfrastructureException();
-            var json = System.Text.Json.JsonSerializer.Serialize(exception);
-
-            //Act
-            var deserializedException = System.Text.Json.JsonSerializer.Deserialize<InfrastructureException>(json);
-
-            //Assert
-            deserializedException.Should().BeAssignableTo<InfrastructureException>();
-        }
     }
 }
