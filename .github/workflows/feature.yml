@@ -35,7 +35,7 @@ jobs:
   sonarcloud:
     name: Sonar scan
     needs: build
-    uses: enzotlucas/enzotlucas-dotnet-devkit-lib/.github/workflows/sonarcloud.yml@main
+    uses: enzotlucas/enzotlucas-dotnet-devkit-lib/.github/workflows/sonarcloud.yml
 
   pull-request:
     name: Open PR to develop
