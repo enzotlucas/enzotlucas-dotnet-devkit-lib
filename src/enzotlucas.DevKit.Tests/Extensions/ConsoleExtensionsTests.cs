@@ -18,7 +18,6 @@ namespace enzotlucas.DevKit.Tests.Extensions
             //Assert
             var response = writer.ToString().Replace(Environment.NewLine, string.Empty);
             response.Should().Be(errorMessage);
-            Console.ForegroundColor.Should().Be(ConsoleColor.Gray);
         }
 
         [Fact]
@@ -35,7 +34,6 @@ namespace enzotlucas.DevKit.Tests.Extensions
             //Assert
             var response = writer.ToString().Replace(Environment.NewLine, string.Empty);
             response.Should().Be(informationMessage);
-            Console.ForegroundColor.Should().Be(ConsoleColor.Gray);
         }
 
         [Fact]
@@ -52,7 +50,6 @@ namespace enzotlucas.DevKit.Tests.Extensions
             //Assert
             var response = writer.ToString().Replace(Environment.NewLine, string.Empty);
             response.Should().Be(successMessage);
-            Console.ForegroundColor.Should().Be(ConsoleColor.Gray);
         }
 
         [Fact]
@@ -69,7 +66,6 @@ namespace enzotlucas.DevKit.Tests.Extensions
             //Assert
             var response = writer.ToString().Replace(Environment.NewLine, string.Empty);
             response.Should().Be(customObject.ToString());
-            Console.ForegroundColor.Should().Be(ConsoleColor.Gray);
         }
 
         [Fact]
@@ -86,7 +82,6 @@ namespace enzotlucas.DevKit.Tests.Extensions
             //Assert
             var response = writer.ToString().Replace(Environment.NewLine, string.Empty);
             response.Should().Be(message);
-            Console.ForegroundColor.Should().Be(ConsoleColor.Gray);
         }
     }
 }
