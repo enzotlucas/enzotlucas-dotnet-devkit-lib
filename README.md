@@ -1,6 +1,8 @@
 # enzotlucas.DevKit
 [![NuGet version (enzotlucas.DevKit)](https://img.shields.io/nuget/v/enzotlucas.DevKit.svg?style=flat-square)](https://www.nuget.org/packages/enzotlucas.DevKit/)
 ![Nuget](https://img.shields.io/nuget/dt/enzotlucas.DevKit)
+![License](https://img.shields.io/github/license/enzotlucas/enzotlucas-dotnet-devkit-lib)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/enzotlucas/enzotlucas-dotnet-devkit-lib/production.yml)
 
 The library that helps you not to repeat code or worry about standard things.
 
