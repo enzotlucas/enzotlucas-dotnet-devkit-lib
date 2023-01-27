@@ -51,7 +51,6 @@ jobs:
         destination_branch: "develop"
         pr_title: "Pulling ${{ steps.extract_branch.outputs.branch }} into develop"
         pr_body: "[FTR] Automated PR from ${{ steps.extract_branch.outputs.branch }} to develop"
-        pr_reviewer: "enzotlucas"
         pr_assignee: "enzotlucas"
         pr_draft: false
         github_token: ${{ secrets.GITHUB_TOKEN }}

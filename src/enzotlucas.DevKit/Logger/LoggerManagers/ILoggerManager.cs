@@ -5,7 +5,7 @@ namespace enzotlucas.DevKit.Logger.LoggerManagers
     /// <summary>
     /// Provides a custom logger manager
     /// </summary>
-    public interface ILoggerManager : IDisposable
+    public interface ILoggerManager
     {
         /// <summary>
         /// Saves the log
