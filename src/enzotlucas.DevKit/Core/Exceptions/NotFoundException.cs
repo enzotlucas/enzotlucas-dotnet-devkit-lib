@@ -12,7 +12,7 @@ namespace enzotlucas.DevKit.Core.Exceptions
         /// Initializes a new instance of the <see cref="NotFoundException"/> class.
         /// </summary>
         /// <returns><see cref="NotFoundException"/></returns>
-        public NotFoundException() : base() { }
+        public NotFoundException() : base("Not found") { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NotFoundException"/> class with a specified error message and a reference to 
