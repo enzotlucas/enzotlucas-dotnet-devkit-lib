@@ -1,6 +1,4 @@
-﻿using enzotlucas.DevKit.Core.Events;
-using enzotlucas.DevKit.Extensions;
-using enzotlucas.DevKit.Logger.LoggerManagers;
+﻿using enzotlucas.DevKit.Logger.LoggerManagers;
 using Microsoft.Extensions.Logging;
 
 namespace enzotlucas.DevKit.Logger.Loggers
@@ -10,6 +8,13 @@ namespace enzotlucas.DevKit.Logger.Loggers
     /// </summary>
     public sealed class ConsoleLoggerManager : ILoggerManager
     {
+        private readonly ILogger<ConsoleLoggerManager> _logger;
+
+        public ConsoleLoggerManager(ILogger<ConsoleLoggerManager> logger)
+        {
+            _logger = logger;
+        }
+
         public void Log(LogLevel logLevel, string message, Guid? correlationId = null, object body = null)
         {
             var log = new Log(logLevel, message, correlationId, body);
@@ -33,34 +38,7 @@ namespace enzotlucas.DevKit.Logger.Loggers
 
         public void Log(Log log)
         {
-            switch (log.LogLevel)
-            {
-                case LogLevel.Trace:
-                case LogLevel.Debug:
-                case LogLevel.Information:
-                    LogInformation(log);
-                    break;
-                case LogLevel.None:
-                    break;
-                default:
-                    LogError(log);
-                    break;
-            }
-        }
-
-        private static void LogError(Log log)
-        {
-            ConsoleExtensions.Print(log, log.LogLevel == LogLevel.Warning ? ConsoleColor.Yellow : ConsoleColor.Red);
-        }
-
-        private static void LogInformation(Log log)
-        {
-            ConsoleExtensions.Print(log, ConsoleColor.White);
-        }
-
-        public void Dispose()
-        {
-
+            _logger.Log(log.LogLevel, log.Message, log);
         }
     }
 }
