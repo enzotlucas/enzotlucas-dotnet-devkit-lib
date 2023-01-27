@@ -21,13 +21,6 @@ namespace enzotlucas.DevKit.Core.Exceptions
         public InfrastructureException() : base() { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InfrastructureException"/> class with a specified error message.
-        /// </summary>
-        /// <param name="message">Error custom message.</param>
-        /// <returns><see cref="InfrastructureException"/></returns>
-        public InfrastructureException(string message) : base(message) { }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="InfrastructureException"/> class with a specified error message and a reference to 
         /// the inner exception that is the cause of this exception.
         /// </summary>

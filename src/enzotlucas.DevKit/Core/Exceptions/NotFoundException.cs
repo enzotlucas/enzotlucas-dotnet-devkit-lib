@@ -9,12 +9,6 @@ namespace enzotlucas.DevKit.Core.Exceptions
     public sealed class NotFoundException : BusinessException
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NotFoundException"/> class.
-        /// </summary>
-        /// <returns><see cref="NotFoundException"/></returns>
-        public NotFoundException() : base("Not found") { }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="NotFoundException"/> class with a specified error message and a reference to 
         /// the inner exception that is the cause of this exception.
         /// </summary>
