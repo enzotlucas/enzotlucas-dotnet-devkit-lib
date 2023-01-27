@@ -1,4 +1,6 @@
-﻿namespace enzotlucas.DevKit.Core.Exceptions
+﻿using System.Runtime.Serialization;
+
+namespace enzotlucas.DevKit.Core.Exceptions
 {
     /// <summary>
     /// Represents business logic errors of objects not found that occur during application execution.
@@ -6,6 +8,21 @@
     [Serializable]
     public sealed class NotFoundException : BusinessException
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotFoundException"/> class.
+        /// </summary>
+        /// <returns><see cref="NotFoundException"/></returns>
+        public NotFoundException() : base() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotFoundException"/> class with a specified error message and a reference to 
+        /// the inner exception that is the cause of this exception.
+        /// </summary>
+        /// <param name="message">Error custom message.</param>
+        /// <param name="innerException">The reference of the cause of this exception.</param>
+        /// <returns><see cref="NotFoundException"/></returns>
+        public NotFoundException(string message, Exception innerException) : base(message, innerException) { }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="NotFoundException"/> class with a specified error message.
         /// </summary>
@@ -24,5 +41,15 @@
         public NotFoundException(Guid correlationId, string message = "Not found") : base(message, correlationId)
         {
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotFoundException"/> class with serialized data.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="SerializationException"></exception>
+        /// <returns><see cref="NotFoundException"/></returns>
+        private NotFoundException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+            :base(serializationInfo, streamingContext)
+        { }
     }
 }
