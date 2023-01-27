@@ -3,6 +3,33 @@
     public class NotFoundExceptionTests
     {
         [Fact]
+        public void Constructor_ExceptionWithMessageAndInnerException_ShouldThrow()
+        {
+            //Arrange
+            var message = "Not found";
+            var innerExceptionMessage = "Generic exception message";
+
+            //Act
+            var act = () =>
+            {
+                try
+                {
+                    throw new Exception(innerExceptionMessage);
+                }
+                catch (Exception ex)
+                {
+                    ex.Message.Should().Be(innerExceptionMessage);
+                    throw new NotFoundException(message, ex);
+                }
+            };
+
+            //Assert
+            var assertion = act.Should().ThrowExactly<NotFoundException>();
+            assertion.WithMessage(message);
+            assertion.WithInnerException<Exception>().Which.Message.Equals(innerExceptionMessage);
+        }
+
+        [Fact]
         public void Constructor_DefaultMessage_ShouldThrow()
         {
             //Arrange & Act
@@ -56,6 +83,20 @@
             act.Should().ThrowExactly<NotFoundException>()
                         .WithMessage("Not found")
                         .Which.CorrelationId.Should().Be(correlationId);
+        }
+
+        [Fact]
+        public void Constructor_ExceptionWithSerializedData_ShouldThrow()
+        {
+            //Arrange
+            var exception = new NotFoundException();
+            var json = System.Text.Json.JsonSerializer.Serialize(exception);
+
+            //Act
+            var deserializedException = System.Text.Json.JsonSerializer.Deserialize<NotFoundException>(json);
+
+            //Assert
+            deserializedException.Should().BeAssignableTo<NotFoundException>();
         }
     }
 }

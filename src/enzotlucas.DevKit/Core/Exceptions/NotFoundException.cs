@@ -18,13 +18,18 @@ namespace enzotlucas.DevKit.Core.Exceptions
         public NotFoundException(string message, Exception innerException) : base(message, innerException) { }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="NotFoundException"/> class with a default error message ("Not found").
+        /// </summary>
+        /// <param name="message">Error default message ("Not found").</param>
+        /// <returns><see cref="NotFoundException"/></returns>
+        public NotFoundException() : base("Not found") { }
+        
+        /// <summary>
         /// Initializes a new instance of the <see cref="NotFoundException"/> class with a specified error message.
         /// </summary>
         /// <param name="message">Error custom message.</param>
         /// <returns><see cref="NotFoundException"/></returns>
-        public NotFoundException(string message = "Not found") : base(message)
-        {
-        }
+        public NotFoundException(string message) : base(message) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NotFoundException"/> class with the request correlation id and a specified error message.
@@ -32,9 +37,7 @@ namespace enzotlucas.DevKit.Core.Exceptions
         /// <param name="correlationId">The request correlation id.</param>
         /// <param name="message">Error custom message.</param>
         /// <returns><see cref="NotFoundException"/></returns>
-        public NotFoundException(Guid correlationId, string message = "Not found") : base(message, correlationId)
-        {
-        }
+        public NotFoundException(Guid correlationId, string message = "Not found") : base(message, correlationId) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NotFoundException"/> class with serialized data.

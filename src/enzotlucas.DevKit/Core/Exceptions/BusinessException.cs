@@ -28,7 +28,11 @@ namespace enzotlucas.DevKit.Core.Exceptions
         /// Initializes a new instance of the <see cref="BusinessException"/> class.
         /// </summary>
         /// <returns><see cref="BusinessException"/></returns>
-        public BusinessException() : base() { }
+        public BusinessException() : base() 
+        {
+            ValidationErrors = new Dictionary<string, string[]>();
+            CorrelationId = Guid.NewGuid();
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BusinessException"/> class with a specified error message and a reference to 
@@ -37,7 +41,11 @@ namespace enzotlucas.DevKit.Core.Exceptions
         /// <param name="message">Error custom message.</param>
         /// <param name="innerException">The reference of the cause of this exception.</param>
         /// <returns><see cref="BusinessException"/></returns>
-        public BusinessException(string message, Exception innerException) : base(message, innerException) { }
+        public BusinessException(string message, Exception innerException) : base(message, innerException) 
+        {
+            ValidationErrors = new Dictionary<string, string[]>();
+            CorrelationId = Guid.NewGuid();
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BusinessException"/> class with a specified error message.
@@ -85,6 +93,9 @@ namespace enzotlucas.DevKit.Core.Exceptions
         /// <returns><see cref="BusinessException"/></returns>
         protected BusinessException(SerializationInfo serializationInfo, StreamingContext streamingContext) 
             : base(serializationInfo, streamingContext)
-        { }
+        {
+            ValidationErrors = new Dictionary<string, string[]>();
+            CorrelationId = Guid.NewGuid();
+        }
     }
 }

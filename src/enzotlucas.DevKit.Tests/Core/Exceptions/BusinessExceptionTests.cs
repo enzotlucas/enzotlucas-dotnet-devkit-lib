@@ -1,7 +1,44 @@
-﻿    namespace enzotlucas.DevKit.Tests.Core.Exceptions
+﻿namespace enzotlucas.DevKit.Tests.Core.Exceptions
 {
     public class BusinessExceptionTests
     {
+        [Fact]
+        public void Constructor_ExceptionWithNoParameters_ShouldThrow()
+        {
+            //Arrange & Act
+            var act = () => { throw new BusinessException(); };
+
+            //Assert
+            act.Should().ThrowExactly<BusinessException>();
+        }
+
+        [Fact]
+        public void Constructor_ExceptionWithMessageAndInnerException_ShouldThrow()
+        {
+            //Arrange
+            var message = "Bad request";
+            var innerExceptionMessage = "Generic exception message";
+
+            //Act
+            var act = () =>
+            {
+                try
+                {
+                    throw new Exception(innerExceptionMessage);
+                }
+                catch (Exception ex)
+                {
+                    ex.Message.Should().Be(innerExceptionMessage);
+                    throw new BusinessException(message, ex);
+                }
+            };
+
+            //Assert
+            var assertion = act.Should().ThrowExactly<BusinessException>();
+            assertion.WithMessage(message);
+            assertion.WithInnerException<Exception>().Which.Message.Equals(innerExceptionMessage);
+        }
+
         [Fact]
         public void Constructor_ExceptionWithMessageAndValidationErrors_ShouldThrow()
         {
@@ -68,6 +105,20 @@
             act.Should().ThrowExactly<BusinessException>()
                         .WithMessage(message)
                         .Which.CorrelationId.Should().Be(correlationId);
+        }
+
+        [Fact]
+        public void Constructor_ExceptionWithSerializedData_ShouldThrow()
+        {
+            //Arrange
+            var exception = new BusinessException();
+            var json = System.Text.Json.JsonSerializer.Serialize(exception);
+
+            //Act
+            var deserializedException = System.Text.Json.JsonSerializer.Deserialize<BusinessException>(json);
+
+            //Assert
+            deserializedException.Should().BeAssignableTo<BusinessException>();
         }
     }
 }
