@@ -53,7 +53,7 @@ namespace enzotlucas.DevKit.Logger
         {
             LogLevel = logLevel;
             Message = message;
-            CorrelationId = correlationId ?? correlationId.Value;
+            CorrelationId = correlationId ?? Guid.Empty;
             Body = body;
         }
 
