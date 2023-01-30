@@ -1,10 +1,12 @@
 ﻿using MediatR;
+using System.Diagnostics.CodeAnalysis;
 
 namespace enzotlucas.DevKit.Core.Events
 {
     /// <summary>
     /// Class for event definitions.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class Event : Message, INotification
     {
         /// <summary>

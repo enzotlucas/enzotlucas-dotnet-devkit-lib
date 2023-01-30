@@ -1,8 +1,11 @@
-﻿namespace enzotlucas.DevKit.Core.Events
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace enzotlucas.DevKit.Core.Events
 {
     /// <summary>
     /// Class for messages definitions
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class Message
     {
         /// <summary>
