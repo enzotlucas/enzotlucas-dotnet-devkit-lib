@@ -19,7 +19,7 @@ namespace enzotlucas.DevKit.Middlewares
         private readonly ILoggerManager _logger;
 
         public DevKitErrorHandlerMiddleware(RequestDelegate next,
-                                      ILoggerManager logger)
+                                            ILoggerManager logger)
         {
             _next = next;
             _logger = logger;
