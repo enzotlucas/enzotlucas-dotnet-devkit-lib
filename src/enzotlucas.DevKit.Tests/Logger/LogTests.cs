@@ -204,6 +204,28 @@ namespace enzotlucas.DevKit.Tests.Logger
         }
 
         [Fact]
+        public void Constructor_WithLogLevelExceptionInnerExceptionWithNoInnerMessageCorrelationIdAndBody_ShouldCreateLog()
+        {
+            //Arrange
+            var logLevel = LogLevel.Error;
+            var innerException = new Exception(string.Empty);
+            var exception = new Exception("Error message", innerException);
+            var correlationId = Guid.NewGuid();
+            var body = new { Id = Guid.NewGuid(), Name = "log name" };
+
+            //Act
+            var log = new Log(logLevel, exception, correlationId, body);
+
+            //Assert
+            log.LogLevel.Should().Be(logLevel);
+            log.Message.Should().NotBe(exception.InnerException.Message);
+            log.Message.Should().Be(exception.Message);
+            log.CorrelationId.Should().Be(correlationId);
+            log.Body.Should().Be(body);
+            log.Error.Should().Be(exception);
+        }
+
+        [Fact]
         public void Constructor_WithLogLevelExceptionAndCorrelationId_ShouldCreateLog()
         {
             //Arrange
