@@ -3,6 +3,7 @@
 ![Nuget](https://img.shields.io/nuget/dt/enzotlucas.DevKit)
 ![License](https://img.shields.io/github/license/enzotlucas/enzotlucas-dotnet-devkit-lib)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/enzotlucas/enzotlucas-dotnet-devkit-lib/production.yml)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=enzotlucas_enzotlucas-dotnet-devkit-lib&metric=coverage)](https://sonarcloud.io/summary/new_code?id=enzotlucas_enzotlucas-dotnet-devkit-lib)
 
 The library that helps you not to repeat code or worry about standard things.
 
