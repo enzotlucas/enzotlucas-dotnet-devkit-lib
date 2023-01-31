@@ -8,6 +8,14 @@ The library that helps you not to repeat code or worry about standard things.
 
 ***
 
+## Using the library
+
+```bash
+dotnet add package enzotlucas.DevKit --prerelease
+```
+
+***
+
 ## Documentation
 Visit [Wiki](https://github.com/enzotlucas/enzotlucas-dotnet-devkit-lib/wiki) page for documentation of all the features.
 

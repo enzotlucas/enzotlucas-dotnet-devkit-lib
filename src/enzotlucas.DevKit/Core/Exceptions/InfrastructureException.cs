@@ -1,8 +1,11 @@
-﻿namespace enzotlucas.DevKit.Core.Exceptions
+﻿using System.Runtime.Serialization;
+
+namespace enzotlucas.DevKit.Core.Exceptions
 {
     /// <summary>
     /// Represents predictable infrastructure errors that occur during application execution
     /// </summary>
+    [Serializable]
     public class InfrastructureException : Exception
     {
         /// <summary>
@@ -10,6 +13,15 @@
         /// </summary>
         /// <returns><see cref="Guid"/></returns>
         public Guid CorrelationId { get; private set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InfrastructureException"/> class.
+        /// </summary>
+        /// <returns><see cref="InfrastructureException"/></returns>
+        public InfrastructureException() : base() 
+        {
+            CorrelationId = Guid.NewGuid();
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InfrastructureException"/> class with a specified error message and a reference to 
@@ -36,6 +48,18 @@
             : base(message, innerException)
         {
             CorrelationId = correlationId;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InfrastructureException"/> class with serialized data.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="SerializationException"></exception>
+        /// <returns><see cref="InfrastructureException"/></returns>
+        protected InfrastructureException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+            : base(serializationInfo, streamingContext)
+        { 
+            CorrelationId = Guid.NewGuid();
         }
     }
 }

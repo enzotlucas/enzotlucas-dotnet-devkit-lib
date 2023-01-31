@@ -74,8 +74,9 @@ namespace enzotlucas.DevKit.ApiSpecification.Swagger
             app.UseSwaggerUI(
                 options =>
                 {
-                    foreach (var description in provider.ApiVersionDescriptions)
-                        options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+
+                    foreach (var groupName in provider.ApiVersionDescriptions.Select(description => description.GroupName))
+                        options.SwaggerEndpoint($"/swagger/{groupName}/swagger.json", groupName.ToUpperInvariant());
                 });
 
             return app;

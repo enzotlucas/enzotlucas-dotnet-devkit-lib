@@ -15,11 +15,9 @@ namespace enzotlucas.DevKit.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILoggerManager _logger;
-        private Guid _correlationId;
 
         public DevKitLoggerMiddleware(RequestDelegate next,
-                                ILoggerManager logger,
-                                IDateTimeProvider dateTime)
+                                ILoggerManager logger)
         {
             _next = next;
             _logger = logger;
@@ -34,18 +32,18 @@ namespace enzotlucas.DevKit.Middlewares
 
         private Task HandleLogsAsync(HttpContext context)
         {
-            _correlationId = context.Request.GetCorrelationId();
+            var correlationId = context.Request.GetCorrelationId();
 
             if (context.User is null || !context.User.Identity.IsAuthenticated)
             {
-                _logger.Log(new Log(LogLevel.Information, "Anonymous request to route", _correlationId));
+                _logger.Log(new Log(LogLevel.Information, "Anonymous request to route", correlationId));
 
                 return Task.CompletedTask;
             }
 
             var userId = context.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
 
-            _logger.Log(new Log(LogLevel.Information, "Authenticated request to route", _correlationId, new { userId, context }));
+            _logger.Log(new Log(LogLevel.Information, "Authenticated request to route", correlationId, new { userId, context }));
 
             return Task.CompletedTask;
         }

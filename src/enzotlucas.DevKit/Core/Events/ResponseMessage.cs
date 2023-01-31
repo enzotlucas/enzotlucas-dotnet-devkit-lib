@@ -1,10 +1,12 @@
 ﻿using FluentValidation.Results;
+using System.Diagnostics.CodeAnalysis;
 
 namespace enzotlucas.DevKit.Core.Events
 {
     /// <summary>
     /// Class for response messages definitions.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class ResponseMessage : Message
     {
         /// <summary>

@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Diagnostics.CodeAnalysis;
 
 namespace enzotlucas.DevKit.ApiSpecification.Swagger
 {
+    [ExcludeFromCodeCoverage]
     internal sealed class SwaggerDefaultValues : IOperationFilter
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
@@ -18,8 +20,13 @@ namespace enzotlucas.DevKit.ApiSpecification.Swagger
                 var response = operation.Responses[responseKey];
 
                 foreach (var contentType in response.Content.Keys)
+                {
                     if (responseType.ApiResponseFormats.All(x => x.MediaType != contentType))
+                    {
                         response.Content.Remove(contentType);
+                    }
+                }
+                    
             }
 
             if (operation.Parameters == null)

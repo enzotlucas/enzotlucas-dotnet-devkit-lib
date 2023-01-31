@@ -1,8 +1,11 @@
-﻿namespace enzotlucas.DevKit.Core.Entities
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace enzotlucas.DevKit.Core.Entities
 {
     /// <summary>
     /// Entity base for application entities. Covers id, creation date and last update date.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class BaseEntity
     {
         /// <summary>
