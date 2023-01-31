@@ -3,6 +3,16 @@
     public class InfrastructureExceptionTests
     {
         [Fact]
+        public void Constructor_ExceptionWithNoParameters_ShouldThrow()
+        {
+            //Arrange & Act
+            var act = () => { throw new InfrastructureException(); };
+
+            //Assert
+            act.Should().ThrowExactly<InfrastructureException>();
+        }
+
+        [Fact]
         public void Constructor_ExceptionWithMessageAndInnerException_ShouldThrow()
         {
             //Arrange

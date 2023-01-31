@@ -20,7 +20,7 @@ namespace enzotlucas.DevKit.Core.UseCases
     /// </summary>
     /// <typeparam name="T">The custom return of the use case.</typeparam>
     /// <returns><see cref="IUseCase{T}"/> response is <see cref="T"/></returns>
-    public interface IUseCase<T> : IRequest<T>
+    public interface IUseCase<out T> : IRequest<T>
     {
         /// <summary>
         /// Get the request correlation id.

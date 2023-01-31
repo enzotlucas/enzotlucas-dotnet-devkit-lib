@@ -3,6 +3,33 @@
     public class NotFoundExceptionTests
     {
         [Fact]
+        public void Constructor_ExceptionWithMessageAndInnerException_ShouldThrow()
+        {
+            //Arrange
+            var message = "Not found";
+            var innerExceptionMessage = "Generic exception message";
+
+            //Act
+            var act = () =>
+            {
+                try
+                {
+                    throw new Exception(innerExceptionMessage);
+                }
+                catch (Exception ex)
+                {
+                    ex.Message.Should().Be(innerExceptionMessage);
+                    throw new NotFoundException(message, ex);
+                }
+            };
+
+            //Assert
+            var assertion = act.Should().ThrowExactly<NotFoundException>();
+            assertion.WithMessage(message);
+            assertion.WithInnerException<Exception>().Which.Message.Equals(innerExceptionMessage);
+        }
+
+        [Fact]
         public void Constructor_DefaultMessage_ShouldThrow()
         {
             //Arrange & Act

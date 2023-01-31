@@ -38,7 +38,7 @@ namespace enzotlucas.DevKit.Logger.Loggers
 
         public void Log(Log log)
         {
-            _logger.Log(log.LogLevel, log.Message, log);
+            _logger.Log(log.LogLevel, "{log}", log);
         }
     }
 }

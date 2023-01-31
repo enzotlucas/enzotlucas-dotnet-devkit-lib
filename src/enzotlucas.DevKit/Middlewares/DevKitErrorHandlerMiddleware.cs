@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Net;
+using System.Net.Mime;
 
 namespace enzotlucas.DevKit.Middlewares
 {
@@ -17,52 +18,45 @@ namespace enzotlucas.DevKit.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILoggerManager _logger;
-        private Guid _correlationId;
 
         public DevKitErrorHandlerMiddleware(RequestDelegate next,
-                                      ILoggerManager logger)
+                                            ILoggerManager logger)
         {
             _next = next;
             _logger = logger;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
+            var correlationId = context.Request.GetCorrelationId();
+
             try
             {
                 await _next(context);
             }
             catch (NotFoundException ex)
             {
-                _correlationId = context.Request.GetCorrelationId();
-
-                _logger.Log(new Log(LogLevel.Warning, ex, _correlationId));
+                _logger.Log(new Log(LogLevel.Warning, ex, correlationId));
 
                 await HandleExceptionAsync(context, ex);
             }
             catch (BusinessException ex)
             {
-                _correlationId = context.Request.GetCorrelationId();
-
-                _logger.Log(new Log(LogLevel.Warning, ex, _correlationId));
+                _logger.Log(new Log(LogLevel.Warning, ex, correlationId));
 
                 await HandleExceptionAsync(context, ex);
             }
             catch (InfrastructureException ex)
             {
-                _correlationId = context.Request.GetCorrelationId();
+                _logger.Log(new Log(LogLevel.Error, ex, correlationId));
 
-                _logger.Log(new Log(LogLevel.Error, ex, _correlationId));
-
-                await HandleExceptionAsync(context, ex, _correlationId);
+                await HandleExceptionAsync(context, ex, correlationId);
             }
             catch (Exception ex)
             {
-                _correlationId = context.Request.GetCorrelationId();
+                _logger.Log(new Log(LogLevel.Critical, "Something unexpected happened.", ex, correlationId));
 
-                _logger.Log(new Log(LogLevel.Critical, "Something unexpected happened.", ex, _correlationId));
-
-                await HandleExceptionAsync(context, ex, _correlationId);
+                await HandleExceptionAsync(context, ex, correlationId);
             }
         }
 
@@ -98,7 +92,7 @@ namespace enzotlucas.DevKit.Middlewares
 
         private static Task ErrorResponse(HttpContext context, string result, HttpStatusCode code)
         {
-            context.Response.ContentType = "application/json";
+            context.Response.ContentType = MediaTypeNames.Application.Json;
 
             context.Response.StatusCode = (int)code;
 

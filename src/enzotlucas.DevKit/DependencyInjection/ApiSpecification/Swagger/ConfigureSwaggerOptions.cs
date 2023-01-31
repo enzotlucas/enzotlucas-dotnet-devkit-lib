@@ -5,10 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace enzotlucas.DevKit.ApiSpecification.Swagger
 {
+    [ExcludeFromCodeCoverage]
     internal sealed class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
     {
         private readonly IApiVersionDescriptionProvider _provider;

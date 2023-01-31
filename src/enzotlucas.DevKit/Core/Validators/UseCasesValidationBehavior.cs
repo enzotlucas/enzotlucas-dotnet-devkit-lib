@@ -2,9 +2,11 @@
 using enzotlucas.DevKit.Core.UseCases;
 using FluentValidation;
 using MediatR;
+using System.Diagnostics.CodeAnalysis;
 
 namespace enzotlucas.DevKit.Core.Validators
 {
+    [ExcludeFromCodeCoverage]
     internal sealed class UseCasesValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IUseCase<TResponse>
     {

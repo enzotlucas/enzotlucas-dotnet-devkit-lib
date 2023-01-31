@@ -53,7 +53,7 @@ namespace enzotlucas.DevKit.Logger
         {
             LogLevel = logLevel;
             Message = message;
-            CorrelationId = correlationId ?? correlationId.Value;
+            CorrelationId = correlationId ?? Guid.Empty;
             Body = body;
         }
 
@@ -90,7 +90,7 @@ namespace enzotlucas.DevKit.Logger
                    Exception ex,
                    Guid? correlationId = null,
                    object body = null) :
-            this(logLevel, ex?.InnerException?.Message ?? ex.Message, correlationId, body)
+            this(logLevel, string.IsNullOrWhiteSpace(ex?.InnerException?.Message) ? ex.Message : ex?.InnerException?.Message, correlationId, body)
         {
             Error = ex;
         }
