@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Net;
+using System.Net.Mime;
 
 namespace enzotlucas.DevKit.Middlewares
 {
@@ -25,7 +26,7 @@ namespace enzotlucas.DevKit.Middlewares
             _logger = logger;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             var correlationId = context.Request.GetCorrelationId();
 
@@ -91,7 +92,7 @@ namespace enzotlucas.DevKit.Middlewares
 
         private static Task ErrorResponse(HttpContext context, string result, HttpStatusCode code)
         {
-            context.Response.ContentType = "application/json";
+            context.Response.ContentType = MediaTypeNames.Application.Json;
 
             context.Response.StatusCode = (int)code;
 
